@@ -1,0 +1,43 @@
+name: build-and-publish
+
+# Build the static site and publish the result to the `dist` branch.
+# The TeleCrypt.io server (deploy/deploy.sh) fetches that branch and Caddy file_server's it.
+# `main` stays source-only (dist/ is gitignored); the built artifact lives wholly on `dist`.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-dist
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Publish dist/ to the dist branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd dist
+          git init -q
+          git config user.name  "telecrypt-ci"
+          git config user.email "ci@telecrypt.io"
+          git add -A
+          git commit -q -m "build ${GITHUB_SHA} ($(date -u +%FT%TZ))"
+          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:dist

@@ -1,0 +1,6 @@
+# TeleCrypt.io
+
+> Secure transport for agents and human beings.
+
+This file is intentionally minimal for now. A full llms.txt (https://llmstxt.org)
+describing how agents can use TeleCrypt will be published here.

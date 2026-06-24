@@ -1,0 +1,11 @@
+---
+// Vim-style left gutter: a column of `~` markers, like an empty buffer below the content.
+---
+
+<div class="bg-nvim-bg text-nvim-gray w-6 flex-shrink-0 text-right pr-2">
+  <div class="h-full">
+    {Array(100).fill('~').map((line) => (
+      <div>{line}</div>
+    ))}
+  </div>
+</div>

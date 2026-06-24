@@ -1,0 +1,34 @@
+---
+import Sidebar from '../components/Sidebar.astro';
+import StatusBar from '../components/StatusBar.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  statusFile?: string;
+}
+
+const { title, statusFile = 'landing' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="TeleCrypt.io — secure transport for agents and human beings." />
+    <title>{title}</title>
+  </head>
+  <body class="bg-nvim-bg text-nvim-fg font-mono flex flex-col h-screen">
+    <div class="flex flex-1 overflow-hidden">
+      <Sidebar />
+      <main class="flex-1 overflow-y-auto p-4">
+        <slot />
+      </main>
+    </div>
+    <StatusBar file={statusFile} />
+    <script src="../scripts/navigation.ts"></script>
+  </body>
+</html>

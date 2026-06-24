@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="TeleCrypt.io" statusFile="landing">
+  <div class="flex flex-col items-center justify-center h-full">
+    <h1 class="text-3xl md:text-4xl font-bold mb-2 text-nvim-blue">TeleCrypt<span class="text-nvim-gray">.io</span></h1>
+    <p class="text-lg md:text-xl text-nvim-green mb-10 text-center">Secure transport for agents and human beings.</p>
+
+    <div class="text-left text-nvim-fg leading-relaxed">
+      <p>type  <span class="text-nvim-yellow">:about</span><span class="text-nvim-blue">&lt;Enter&gt;</span>        the slogan, plainly</p>
+      <p>type  <span class="text-nvim-yellow">:technology</span><span class="text-nvim-blue">&lt;Enter&gt;</span>   how the transport works &amp; why it's secure</p>
+      <p>type  <span class="text-nvim-yellow">:llms</span><span class="text-nvim-blue">&lt;Enter&gt;</span>         machine-readable notes for agents</p>
+      <br />
+      <p>type  <span class="text-nvim-yellow">:h</span><span class="text-nvim-blue">&lt;Enter&gt;</span>            <a href="/help" class="underline hover:text-nvim-blue">help</a> / key bindings</p>
+      <p>type  <span class="text-nvim-yellow">:q</span><span class="text-nvim-blue">&lt;Enter&gt;</span>            exit</p>
+    </div>
+
+    <p class="mt-10 text-sm text-nvim-gray">
+      raw text: <a href="/llms.txt" class="underline hover:text-nvim-blue">/llms.txt</a>
+      &middot; <a href="/about.txt" class="underline hover:text-nvim-blue">/about.txt</a>
+      &middot; <a href="/technology.txt" class="underline hover:text-nvim-blue">/technology.txt</a>
+    </p>
+  </div>
+</Layout>
