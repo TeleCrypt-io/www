@@ -44,11 +44,11 @@ probe the homeserver. The only way in is the authenticated client API.
 
 Synapse itself holds no passwords. Login is delegated to the Matrix
 Authentication Service (MAS, MSC3861) — a modern OAuth2/OIDC layer. Local
-registration and password login are disabled in Synapse.
+registration and password login are disabled in Synapse itself.
 
-MAS in turn delegates to an upstream identity provider (Authelia), which owns
-credentials, multi-factor authentication, and recovery. Accounts therefore get
-password + TOTP + passkey support and a single, auditable sign-in path, while the
+MAS is the sole identity provider: it holds credentials directly (password
+login with mandatory email verification) rather than delegating to a separate
+upstream service, keeping a single, auditable sign-in path while the
 homeserver stays out of the credential business entirely.
 
 

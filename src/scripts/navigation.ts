@@ -68,6 +68,10 @@ function handleCommand(command: string) {
     case 'llms.txt':
       window.location.href = '/llms';
       break;
+    case 'eject':
+    case 'eject.txt':
+      window.location.href = '/eject';
+      break;
     case 'h':
     case 'help':
       window.location.href = '/help';
