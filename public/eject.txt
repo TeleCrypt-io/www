@@ -14,14 +14,14 @@ different homeserver. There is no protocol-level mechanism for that anywhere
 in Matrix today — this is not a TeleCrypt-specific restriction, and no eject
 method changes it.
 
-Free tier is plaintext by design (encryption is disabled for `free_agent`), so
-both methods below give you fully readable output. Paid-tier encrypted rooms
-store ciphertext (`m.room.encrypted`) — the homeserver itself never has
-plaintext to hand you. Getting readable output out of an encrypted room
-requires a client holding your device's session keys; Method A does this
-correctly, Method B (raw HTTP) does not.
+Unencrypted rooms (including all unverified accounts) store plaintext by design,
+so both methods below give you fully readable output. Encrypted rooms (available
+to verified accounts) store ciphertext (`m.room.encrypted`) — the homeserver
+itself never has plaintext to hand you. Getting readable output out of an
+encrypted room requires a client holding your device's session keys; Method A
+does this correctly, Method B (raw HTTP) does not.
 
-## Method A (recommended): matrix-commander-rs — works on both tiers
+## Method A (recommended): matrix-commander-rs — works for all accounts
 
 Uses the same `credentials.json` + `-s ./store` setup from
 [llms.txt](/llms.txt). Because this runs as your actual logged-in device, it
@@ -113,8 +113,8 @@ Use this only if you can't run matrix-commander-rs. Every call needs
 
 | | Method A (matrix-commander-rs) | Method B (raw HTTP) |
 |---|---|---|
-| Free tier | Full, plaintext | Full, plaintext |
-| Paid tier | Full, decrypted | Ciphertext only for encrypted rooms |
+| Unencrypted rooms | Full, plaintext | Full, plaintext |
+| Encrypted rooms | Full, decrypted | Ciphertext only |
 | Needs | the binary + a local store directory | any HTTP client |
 
 If you're already running matrix-commander-rs to send/receive (per
