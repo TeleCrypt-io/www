@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messengers Comparison</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            color: #222;
+            padding: 2rem 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+            color: #1a1a2e;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 1.8rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.03em;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 14px;
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.10);
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            font-size: 0.84rem;
+        }
+
+        thead th {
+            background: #1a1a2e;
+            color: #e8eaf6;
+            padding: 0.9rem 0.8rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.78rem;
+            line-height: 1.4;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        thead th:first-child {
+            text-align: left;
+            min-width: 160px;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f9fafb;
+        }
+
+        tbody tr:hover {
+            background: #eef2ff;
+            transition: background 0.15s;
+        }
+
+        tbody td {
+            padding: 0.7rem 0.8rem;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: middle;
+            line-height: 1.5;
+        }
+
+        tbody td:first-child {
+            text-align: left;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .note {
+            font-size: 0.72rem;
+            color: #999;
+            font-weight: 400;
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* Text highlights */
+        .lockin-low {
+            color: #16a34a;
+            font-weight: 600;
+        }
+
+        .lockin-med {
+            color: #d97706;
+            font-weight: 600;
+        }
+
+        .lockin-high {
+            color: #dc2626;
+            font-weight: 600;
+        }
+
+        .k8s-no {
+            color: #16a34a;
+            font-weight: 700;
+        }
+
+        /* Green for no K8s needed */
+        .k8s-yes {
+            color: #dc2626;
+            font-weight: 700;
+        }
+
+        /* Red for K8s mandatory */
+        .k8s-na {
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .trust-zero {
+            color: #0284c7;
+            font-weight: 600;
+        }
+
+        .trust-enterprise {
+            color: #6b21a8;
+            font-weight: 600;
+        }
+
+        /* Tiers */
+        tr.tier-gold td:first-child {
+            border-left: 5px solid #22c55e;
+        }
+
+        tr.tier-silver td:first-child {
+            border-left: 5px solid #f59e0b;
+        }
+
+        tr.tier-none td:first-child {
+            border-left: 5px solid #e5e7eb;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: center;
+            margin-top: 1.6rem;
+            font-size: 0.84rem;
+            color: #555;
+            max-width: 1300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .dot-gold {
+            background: #22c55e;
+        }
+
+        .dot-silver {
+            background: #f59e0b;
+        }
+
+        .dot-none {
+            background: #e5e7eb;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Business Messengers Comparison (as of 5 March 2026)</h1>
+    <p class="subtitle">With a focus on open source, self-hosted, end-to-end encryption business solution.</p>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Messenger</th>
+                    <th>Open Source<br>(Server &amp; Client)</th>
+                    <th>True E2EE<br>(Default + Forward Secrecy)</th>
+                    <th>Trust Model<br>(Architecture)</th>
+                    <th>Kubernetes Req?<br>(Prod Server)</th>
+                    <th>Federation Support</th>
+                    <th>E2EE Sync<br>Mobile ↔ Desktop</th>
+                    <th>E2EE Calls<br>(1:1 &amp; Group)</th>
+                    <th>Vendor Lock-in</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- GOLD -->
+                <tr class="tier-gold">
+                    <td>Element <span class="note">Matrix protocol</span></td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td><span class="trust-zero">Zero-Trust</span> <span class="note">Cryptographic verification</span>
+                    </td>
+                    <td><span class="k8s-no">No</span> <span class="note">Docker / Python is enough</span></td>
+                    <td>✅ <span class="note">Native Server-to-Server</span></td>
+                    <td>✅ <span class="note">Cross-signing</span></td>
+                    <td>✅ <span class="note">Element Call (WebRTC)</span></td>
+                    <td><span class="lockin-low">Low</span> <span class="note">Open protocol</span></td>
+                </tr>
+
+                <tr class="tier-gold">
+                    <td>Wire</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td><span class="trust-enterprise">Trusted Enterprise</span> <span class="note">E2EE, but central
+                            authority</span></td>
+                    <td><span class="k8s-yes">Yes</span> <span class="note">Mandatory for Wire backend</span></td>
+                    <td>✅ <span class="note">Enterprise Federation only</span></td>
+                    <td>✅ <span class="note">Up to 8 devices</span></td>
+                    <td>✅ <span class="note">Built-in WebRTC</span></td>
+                    <td><span class="lockin-med">Medium</span> <span class="note">Tightly coupled system</span></td>
+                </tr>
+
+                <!-- SILVER -->
+                <tr class="tier-silver">
+                    <td>XMPP <span class="note">Conversations / Dino</span></td>
+                    <td>✅</td>
+                    <td>⚠️ <span class="note">Opt-in (via OMEMO)</span></td>
+                    <td><span class="trust-enterprise">Trusted Server</span> <span class="note">With Zero-Trust OMEMO
+                            overlay</span></td>
+                    <td><span class="k8s-no">No</span> <span class="note">Lightweight binaries/Docker</span></td>
+                    <td>✅ <span class="note">Native Server-to-Server</span></td>
+                    <td>⚠️ <span class="note">Modern OMEMO clients only</span></td>
+                    <td>⚠️ <span class="note">1:1 native; Group via Jitsi</span></td>
+                    <td><span class="lockin-low">Low</span> <span class="note">Vast open ecosystem</span></td>
+                </tr>
+
+                <tr class="tier-silver">
+                    <td>Jami</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td><span class="trust-zero">Zero-Trust</span> <span class="note">Pure P2P</span></td>
+                    <td><span class="k8s-no">No</span> <span class="note">No server needed (P2P)</span></td>
+                    <td>❌ <span class="note">P2P mesh, no federation</span></td>
+                    <td>✅ <span class="note">Swarm feature</span></td>
+                    <td>✅ <span class="note">P2P native</span></td>
+                    <td><span class="lockin-low">Low</span> <span class="note">You own your keys</span></td>
+                </tr>
+
+                <tr class="tier-silver">
+                    <td>Rocket.Chat</td>
+                    <td>✅ <span class="note">Core only</span></td>
+                    <td>⚠️ <span class="note">Opt-in / Partial FW secrecy</span></td>
+                    <td><span class="trust-enterprise">Trusted Enterprise</span> <span class="note">E2EE is an
+                            overlay</span></td>
+                    <td><span class="k8s-no">No</span> <span class="note">Docker / Snap / Tarball</span></td>
+                    <td>✅ <span class="note">Via Matrix-compatible engine</span></td>
+                    <td>⚠️ <span class="note">Where E2EE is enabled</span></td>
+                    <td>⚠️ <span class="note">Requires Jitsi plugin</span></td>
+                    <td><span class="lockin-med">Medium</span> <span class="note">Open core</span></td>
+                </tr>
+
+                <!-- GREY -->
+                <tr class="tier-none">
+                    <td>SimpleX Chat</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td><span class="trust-zero">Zero-Trust</span> <span class="note">No user identifiers</span></td>
+                    <td><span class="k8s-no">No</span> <span class="note">Lightweight relay binaries</span></td>
+                    <td>❌ <span class="note">Isolated relays</span></td>
+                    <td>❌ <span class="note">Isolated by design</span></td>
+                    <td>⚠️ <span class="note">1:1 only</span></td>
+                    <td><span class="lockin-low">Low</span> <span class="note">Exportable DB</span></td>
+                </tr>
+
+                <tr class="tier-none">
+                    <td>Mattermost</td>
+                    <td>✅ <span class="note">Core only</span></td>
+                    <td>❌ <span class="note">In-transit/at-rest only</span></td>
+                    <td><span class="trust-enterprise">Trusted Enterprise</span> <span class="note">Server has full
+                            access</span></td>
+                    <td><span class="k8s-no">No</span> <span class="note">Docker / Binary</span></td>
+                    <td>⚠️ <span class="note">Shared Channels feature only</span></td>
+                    <td>❌ <span class="note">No true E2EE</span></td>
+                    <td>⚠️ <span class="note">Requires Calls plugin</span></td>
+                    <td><span class="lockin-med">Medium</span> <span class="note">Proprietary schema</span></td>
+                </tr>
+
+                <tr class="tier-none">
+                    <td>Wickr <span class="note">AWS</span></td>
+                    <td>❌ <span class="note">Proprietary</span></td>
+                    <td>✅</td>
+                    <td><span class="trust-enterprise">Trusted Enterprise</span> <span class="note">E2EE payload,
+                            central admin</span></td>
+                    <td><span class="k8s-yes">Yes</span> <span class="note">Enterprise On-Prem requires K8s</span></td>
+                    <td>✅ <span class="note">Wickr-to-Wickr network</span></td>
+                    <td>✅</td>
+                    <td>❌ <span class="note">Proprietary backend</span></td>
+                    <td><span class="lockin-high">High</span> <span class="note">Amazon ecosystem</span></td>
+                </tr>
+
+                <tr class="tier-none">
+                    <td>Session</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td><span class="trust-zero">Zero-Trust</span> <span class="note">Decentralized nodes</span></td>
+                    <td><span class="k8s-no">No</span> <span class="note">Global decentralized nodes</span></td>
+                    <td>❌ <span class="note">Onion-routed network</span></td>
+                    <td>✅</td>
+                    <td>⚠️ <span class="note">1:1 beta only</span></td>
+                    <td><span class="lockin-low">Low</span> <span class="note">Decentralized network</span></td>
+                </tr>
+
+                <tr class="tier-none">
+                    <td>Threema</td>
+                    <td>❌ <span class="note">Client only</span></td>
+                    <td>✅</td>
+                    <td><span class="trust-enterprise">Trusted Server</span> <span class="note">E2EE, but central
+                            router</span></td>
+                    <td><span class="k8s-no">No</span> <span class="note">Docker available for OnPrem</span></td>
+                    <td>❌ <span class="note">Closed network</span></td>
+                    <td>✅ <span class="note">Threema 2.0</span></td>
+                    <td>❌ <span class="note">Proprietary backend</span></td>
+                    <td><span class="lockin-high">High</span> <span class="note">Proprietary server</span></td>
+                </tr>
+
+                <tr class="tier-none">
+                    <td>Signal</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td><span class="trust-zero">Zero-Trust</span> <span class="note">SGX Enclaves / TOFU</span></td>
+                    <td><span class="k8s-na">N/A</span> <span class="note">Not practical to self-host</span></td>
+                    <td>❌ <span class="note">Walled garden</span></td>
+                    <td>✅</td>
+                    <td>❌ <span class="note">Cannot self-host</span></td>
+                    <td><span class="lockin-high">High</span> <span class="note">No third-party clients</span></td>
+                </tr>
+
+                <tr class="tier-none">
+                    <td>Briar</td>
+                    <td>✅</td>
+                    <td>✅</td>
+                    <td><span class="trust-zero">Zero-Trust</span> <span class="note">Device-to-Device</span></td>
+                    <td><span class="k8s-no">No</span> <span class="note">P2P</span></td>
+                    <td>❌ <span class="note">Tor/Bluetooth</span></td>
+                    <td>❌</td>
+                    <td>❌</td>
+                    <td><span class="lockin-low">Low</span> <span class="note">Open source P2P</span></td>
+                </tr>
+
+                <tr class="tier-none">
+                    <td>WhatsApp</td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td><span class="trust-enterprise">Trusted Server</span> <span class="note">Meta manages
+                            metadata</span></td>
+                    <td><span class="k8s-na">N/A</span> <span class="note">Not self-hostable</span></td>
+                    <td>❌</td>
+                    <td>✅</td>
+                    <td>❌</td>
+                    <td><span class="lockin-high">High</span> <span class="note">Meta ecosystem</span></td>
+                </tr>
+
+                <tr class="tier-none">
+                    <td>Telegram</td>
+                    <td>❌ <span class="note">Client only</span></td>
+                    <td>⚠️ <span class="note">Secret Chats only</span></td>
+                    <td><span class="trust-enterprise">Trusted Server</span> <span class="note">Server holds cloud
+                            keys</span></td>
+                    <td><span class="k8s-na">N/A</span> <span class="note">Not self-hostable</span></td>
+                    <td>❌</td>
+                    <td>❌ <span class="note">Secret Chats do not sync</span></td>
+                    <td>❌</td>
+                    <td><span class="lockin-high">High</span> <span class="note">Proprietary cloud</span></td>
+                </tr>
+
+                <tr class="tier-none">
+                    <td>Slack / Teams</td>
+                    <td>❌</td>
+                    <td>❌</td>
+                    <td><span class="trust-enterprise">Trusted Enterprise</span> <span class="note">Full server
+                            visibility</span></td>
+                    <td><span class="k8s-na">N/A</span> <span class="note">SaaS only</span></td>
+                    <td>⚠️ <span class="note">Slack Connect / Guest</span></td>
+                    <td>❌</td>
+                    <td>❌</td>
+                    <td><span class="lockin-high">High</span> <span class="note">SaaS monopoly</span></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item"><span>✅</span> Yes / Fully supported</div>
+        <div class="legend-item"><span>⚠️</span> Partial / Caveats / Requires extra config</div>
+        <div class="legend-item"><span>❌</span> No / Not supported / Not needed</div>
+        <div class="legend-item"><span class="dot dot-gold"></span> Meets all business requirements</div>
+        <div class="legend-item"><span class="dot dot-silver"></span> Partially meets requirements</div>
+        <div class="legend-item"><span class="dot dot-none"></span> Does not meet requirements</div>
+    </div>
+
+</body>
+
+</html>

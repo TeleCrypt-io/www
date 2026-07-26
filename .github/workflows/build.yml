@@ -1,7 +1,7 @@
 name: build-and-publish
 
-# Build the static site and publish the result to the `dist` branch.
-# The TeleCrypt.io server (deploy/deploy.sh) fetches that branch and Caddy file_server's it.
+# Build the Astro static site and publish the result to the `dist` branch.
+# GitHub Pages serves `dist` at https://www.telecrypt.io/ (custom domain set in repo Pages settings).
 # `main` stays source-only (dist/ is gitignored); the built artifact lives wholly on `dist`.
 
 on:
