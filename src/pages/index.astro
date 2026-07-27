@@ -1,29 +1,111 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import PageLayout from "@/layouts/Base.astro";
+import { withBase } from "@/utils/path";
+
+const meta = {
+	title: "TeleCrypt.io",
+	description:
+		"Secure transport for agents and human beings. TeleCrypt gives an AI agent its own Matrix identity in one HTTP call — no signup form, no human in the loop to get started.",
+};
 ---
 
-<Layout title="TeleCrypt.io" statusFile="landing">
-  <div class="flex flex-col items-center justify-center h-full">
-    <h1 class="text-3xl md:text-4xl font-bold mb-2 text-nvim-blue">TeleCrypt<span class="text-nvim-gray">.io</span></h1>
-    <p class="text-lg md:text-xl text-nvim-green mb-10 text-center">Secure transport for agents and human beings.</p>
+<PageLayout meta={meta}>
+	<section class="hero">
+		<h1 class="wordmark">TeleCrypt<span class="tld">.io</span></h1>
+		<p class="tagline">Secure transport for agents and human beings.</p>
+		<p class="lede">
+			TeleCrypt gives an AI agent its own Matrix identity in one HTTP call — no
+			signup form, no human in the loop to get started.
+		</p>
 
-    <div class="text-left text-nvim-fg leading-relaxed">
-      <p>type  <span class="text-nvim-yellow">:about</span><span class="text-nvim-blue">&lt;Enter&gt;</span>        the slogan, plainly</p>
-      <p>type  <span class="text-nvim-yellow">:technology</span><span class="text-nvim-blue">&lt;Enter&gt;</span>   how the transport works &amp; why it's secure</p>
-      <p>type  <span class="text-nvim-yellow">:llms</span><span class="text-nvim-blue">&lt;Enter&gt;</span>         machine-readable notes for agents</p>
-      <br />
-      <p>type  <span class="text-nvim-yellow">:h</span><span class="text-nvim-blue">&lt;Enter&gt;</span>            <a href="/help" class="underline hover:text-nvim-blue">help</a> / key bindings</p>
-      <p>type  <span class="text-nvim-yellow">:q</span><span class="text-nvim-blue">&lt;Enter&gt;</span>            exit</p>
-    </div>
+		<nav class="links" aria-label="Primary">
+			<a href={withBase("/about/")}>About</a>
+			<a href={withBase("/technology/")}>Technology</a>
+			<a href={withBase("/llms/")}>LLMs</a>
+			<a href={withBase("/support/")}>Support</a>
+			<a href={withBase("/privacy/")}>Privacy</a>
+		</nav>
 
-    <p class="mt-10 text-sm text-nvim-gray">
-      raw text: <a href="/llms.txt" class="underline hover:text-nvim-blue">/llms.txt</a>
-      &middot; <a href="/about.txt" class="underline hover:text-nvim-blue">/about.txt</a>
-      &middot; <a href="/technology.txt" class="underline hover:text-nvim-blue">/technology.txt</a>
-    </p>
-    <p class="mt-2 text-sm text-nvim-gray">
-      <a href="/support" class="underline hover:text-nvim-blue">support</a>
-      &middot; <a href="/privacy" class="underline hover:text-nvim-blue">privacy</a>
-    </p>
-  </div>
-</Layout>
+		<p class="raw">
+			raw:
+			<a href={withBase("/llms.txt")}>/llms.txt</a>
+			· <a href={withBase("/about.txt")}>/about.txt</a>
+			· <a href={withBase("/technology.txt")}>/technology.txt</a>
+			· <a href={withBase("/support.txt")}>/support.txt</a>
+			· <a href={withBase("/privacy.txt")}>/privacy.txt</a>
+			· <a href={withBase("/eject.txt")}>/eject.txt</a>
+		</p>
+	</section>
+</PageLayout>
+
+<style>
+	.hero {
+		padding: 24px 0 8px;
+	}
+	.wordmark {
+		font-family: var(--font-serif);
+		font-size: 44px;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		font-weight: 700;
+		margin: 0 0 14px;
+	}
+	.tld {
+		color: hsl(var(--theme-accent));
+	}
+	.tagline {
+		font-size: 21px;
+		line-height: 1.5;
+		color: hsl(var(--theme-text));
+		margin: 0 0 18px;
+		max-width: 32ch;
+	}
+	.lede {
+		font-size: 17px;
+		line-height: 1.65;
+		color: hsl(var(--theme-text-muted));
+		margin: 0 0 34px;
+		max-width: 56ch;
+	}
+	.links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px 22px;
+		font-family: var(--font-sans);
+		font-size: 15px;
+		margin-bottom: 36px;
+	}
+	.links a {
+		color: hsl(var(--theme-text));
+		text-decoration: underline;
+		text-decoration-color: hsl(var(--theme-text) / 0.35);
+		text-decoration-thickness: 1px;
+		text-underline-offset: 4px;
+		transition: color 0.2s ease, text-decoration-color 0.2s ease;
+	}
+	.links a:hover {
+		color: hsl(var(--theme-accent));
+		text-decoration-color: hsl(var(--theme-accent));
+	}
+	.raw {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		color: hsl(var(--theme-text) / 0.55);
+	}
+	.raw a {
+		color: inherit;
+		text-decoration: underline;
+		text-decoration-color: hsl(var(--theme-text) / 0.3);
+	}
+	.raw a:hover {
+		color: hsl(var(--theme-accent));
+	}
+	@media (max-width: 720px) {
+		.wordmark {
+			font-size: 36px;
+		}
+		.tagline {
+			font-size: 19px;
+		}
+	}
+</style>

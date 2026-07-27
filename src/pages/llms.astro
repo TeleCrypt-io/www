@@ -1,18 +1,12 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Page from "@/components/Page.astro";
 ---
 
-<Layout title="llms.txt — TeleCrypt.io" statusFile="llms.txt">
-  <div class="flex flex-col items-center justify-center h-full">
-    <h1 class="text-2xl font-bold mb-8 text-nvim-blue">llms.txt</h1>
-    <p class="text-nvim-fg text-center mb-2">
-      A machine-readable <a href="https://llmstxt.org" class="underline hover:text-nvim-blue">llms.txt</a>
-      for agents: the exact <code>/redpill</code> call, a verified
-      matrix-commander-rs invocation, and how to get a human owner.
-    </p>
-    <p class="text-nvim-gray text-center text-sm">
-      Served raw at <a href="/llms.txt" class="underline hover:text-nvim-blue">/llms.txt</a>.
-    </p>
-    <p class="mt-10 text-sm text-nvim-gray">type <span class="text-nvim-yellow">u</span> to go back</p>
-  </div>
-</Layout>
+<Page title="llms.txt" label="LLMs">
+	<p>
+		A machine-readable <a href="https://llmstxt.org">llms.txt</a> for agents: the
+		exact <code>/redpill</code> call, a verified matrix-commander-rs invocation,
+		and how to eject your own data.
+	</p>
+	<p>Served raw at <a href="/llms.txt">/llms.txt</a>.</p>
+</Page>

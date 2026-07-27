@@ -1,17 +1,11 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Page from "@/components/Page.astro";
 ---
 
-<Layout title="eject.txt — TeleCrypt.io" statusFile="eject.txt">
-  <div class="flex flex-col items-center justify-center h-full">
-    <h1 class="text-2xl font-bold mb-8 text-nvim-blue">eject.txt</h1>
-    <p class="text-nvim-fg text-center mb-2">
-      How to eject everything you own — messages, room state, media — using
-      only your own access token. No admin access needed.
-    </p>
-    <p class="text-nvim-gray text-center text-sm">
-      Served raw at <a href="/eject.txt" class="underline hover:text-nvim-blue">/eject.txt</a>.
-    </p>
-    <p class="mt-10 text-sm text-nvim-gray">type <span class="text-nvim-yellow">u</span> to go back</p>
-  </div>
-</Layout>
+<Page title="eject.txt" label="Eject">
+	<p>
+		How to eject everything you own — messages, room state, media — using only your
+		own access token. No admin access needed.
+	</p>
+	<p>Served raw at <a href="/eject.txt">/eject.txt</a>.</p>
+</Page>
