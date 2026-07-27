@@ -33,35 +33,9 @@
 		--rail-gap: 36px;               /* gap between rail and post body */
 	}
 
-	:root,
-	:root[data-theme="light"] {
-		color-scheme: light;
-		/* hsl-channel format — see tailwind.config.ts color mapping */
-		--theme-bg: 37deg 47% 93%;            /* #f6f1e6 */
-		--theme-text: 28deg 16% 13%;          /* #25201b */
-		--theme-text-muted: 25deg 14% 26%;    /* #4a4239 */
-		--theme-accent: 17deg 60% 34%;        /* #8a4423 */
-		--theme-accent-2: 28deg 16% 13%;      /* same as ink */
-		--theme-link: 17deg 60% 34%;          /* same as accent */
-		--theme-quote: 17deg 60% 34%;         /* same as accent */
-
-		/* Concrete-color palette tokens (see file header for rationale) */
-		--paper: #fbf6ec;
-		--hairline: #d9cfb9;
-		--faint: #b8ad9b;
-		--accent-soft: rgba(138, 68, 35, 0.1);
-		--accent-soft-strong: rgba(138, 68, 35, 0.18);
-
-		/* Callout accents — hues spread for distinguishability, kept muted for the theme */
-		--aside-note: 212deg 20% 46%;       /* dusty blue */
-		--aside-tip: 96deg 32% 33%;         /* green */
-		--aside-important: 284deg 26% 48%;  /* plum */
-		--aside-caution: 40deg 78% 40%;     /* amber */
-		--aside-warning: 7deg 66% 45%;      /* red */
-	}
-
-	:root[data-theme="dark"] {
+	:root {
 		color-scheme: dark;
+		/* hsl-channel format — see tailwind.config.ts color mapping */
 		--theme-bg: 20deg 9% 7%;              /* #131110 */
 		--theme-text: 42deg 35% 92%;          /* #f4f0e3 */
 		--theme-text-muted: 36deg 18% 73%;    /* #c8c1ae */
@@ -70,16 +44,18 @@
 		--theme-link: 30deg 49% 59%;          /* same as accent */
 		--theme-quote: 30deg 49% 59%;         /* same as accent */
 
+		/* Concrete-color palette tokens (see file header for rationale) */
 		--paper: #1a1715;
 		--hairline: #2a2622;
 		--faint: #4f4a42;
 		--accent-soft: rgba(200, 151, 97, 0.12);
 		--accent-soft-strong: rgba(200, 151, 97, 0.22);
 
+		/* Callout accents — hues spread for distinguishability, kept muted for the theme */
 		--aside-note: 212deg 28% 68%;       /* dusty blue */
 		--aside-tip: 96deg 30% 62%;         /* green */
 		--aside-important: 284deg 34% 74%;  /* plum */
-		--aside-caution: 42deg 72% 62%;     /* amber */
+		--aside-caution: 42deg 72% 62%;      /* amber */
 		--aside-warning: 9deg 68% 66%;      /* red */
 	}
 }
@@ -90,7 +66,6 @@
 	.post,
 	ul.work-list a,
 	.share-btn,
-	.theme-toggle,
 	.archive-link a,
 	.pag-link,
 	.socials a,
@@ -107,8 +82,7 @@
 		transform: scale(0.992);
 		opacity: 0.85;
 	}
-	.share-btn:active,
-	.theme-toggle:active {
+	.share-btn:active {
 		transform: scale(0.96);
 	}
 	.archive-link a:active,

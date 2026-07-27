@@ -1,7 +1,6 @@
 ---
 import { menuLinks, siteConfig } from "@/site-config";
 import { withBase } from "@/utils/path";
-import ThemeToggle from "../ThemeToggle.astro";
 
 const url = new URL(Astro.request.url);
 const wordmark = siteConfig.title;
@@ -48,7 +47,6 @@ const navIcons: Record<string, string> = {
 				))
 			}
 		</nav>
-		<ThemeToggle />
 	</div>
 </header>
 
@@ -122,17 +120,17 @@ const navIcons: Record<string, string> = {
 		.site-header {
 			margin-bottom: 36px;
 			display: grid;
-			grid-template-columns: 1fr auto;
+			grid-template-columns: 1fr;
 			grid-template-areas:
-				"wordmark theme"
-				"nav nav";
+				"wordmark"
+				"nav";
 			align-items: center;
 			column-gap: 14px;
 			row-gap: 14px;
+			justify-items: start;
 		}
 		.wordmark { grid-area: wordmark; }
 		.header-right { display: contents; }
-		.theme-toggle { grid-area: theme; justify-self: end; }
 		.nav {
 			grid-area: nav;
 			gap: 22px;
