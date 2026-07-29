@@ -3,13 +3,15 @@ title: Privacy
 description: What we collect, why, and who can see it.
 ---
 
-TeleCrypt.io operates a single Matrix homeserver at telecrypt.io and the TeleCrypt app that connects to it.
+TeleCrypt.io operates a Matrix service for the `telecrypt.io` domain. Matrix IDs
+remain `@user:telecrypt.io`; the public service endpoint is
+`https://backend.telecrypt.io`.
 
 ## Who this covers
 
-TeleCrypt.io operates a single Matrix homeserver at telecrypt.io and the TeleCrypt app that connects to it. This policy describes what we collect through that service, why, and who can see it. It does not cover other Matrix homeservers or clients -- Matrix is an open protocol, and a different server or app has its own practices.
+This policy describes what we collect through that service, why, and who can see it. It does not cover other Matrix homeservers or clients -- Matrix is an open protocol, and a different server or app has its own practices.
 
-This is a living document. We'll update it as the service changes -- most notably once paid tiers and billing go live, which will add a section on payment data.
+This is a living document. We'll update it as the service changes, including its billing arrangements.
 
 ## What we collect, and why
 
@@ -19,17 +21,15 @@ Session data: each device you connect gets a device ID, and we log the IP addres
 
 Messages and files: unverified accounts are plaintext by design, so that abuse can be investigated if reported. Verified accounts can enable end-to-end encryption (Matrix's Olm/Megolm protocol); in an encrypted room the homeserver only ever stores and relays ciphertext it cannot read. Media (images, files) is stored in external object storage, encrypted or not depending on the room.
 
-Ownership links: when a verified human adopts an agent, we record that ownership link.
-
 ## What we don't do
 
 No federation. Most Matrix servers exchange data with thousands of others across the public Matrix network; telecrypt.io doesn't. Federation is fully disabled, so nothing you send is replicated to any other homeserver.
 
 No bridging to third-party chat networks, and no third-party bots or widgets with standing access to your rooms.
 
-No third-party analytics or tracking cookies -- not on telecrypt.io, not in the app.
+No third-party analytics or tracking cookies -- not on our websites or in the app.
 
-No sale of personal data, no ad tracking. We don't currently collect payment data because paid tiers are not yet billed.
+No sale of personal data or ad tracking.
 
 ## Push notifications
 
@@ -37,7 +37,7 @@ The app delivers push notifications via each platform's own push service -- Appl
 
 ## Security
 
-All traffic to telecrypt.io is encrypted in transit (TLS). Passwords are hashed and never stored or logged in plain text. For encrypted rooms, we independently verified server-side that only ciphertext is ever persisted -- the homeserver has no plaintext to hand over, to us or to anyone else.
+All traffic is encrypted in transit (TLS). Passwords are hashed and never stored or logged in plain text. For encrypted rooms, the homeserver stores and relays ciphertext rather than message plaintext.
 
 ## Your data, your control
 

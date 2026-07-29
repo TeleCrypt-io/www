@@ -12,7 +12,9 @@ participants.
 
 Synapse is the reference Matrix homeserver, maintained by Element. It speaks the
 Matrix client-server API over HTTPS and stores room state in PostgreSQL.
-TeleCrypt runs Synapse as the single homeserver for the telecrypt.io domain.
+TeleCrypt runs Synapse for the telecrypt.io domain. Matrix IDs remain
+@user:telecrypt.io; clients reach the public API at
+https://backend.telecrypt.io.
 
 
 # End-to-end encryption
@@ -31,10 +33,8 @@ not an impostor.
 # A closed homeserver
 
 Most Matrix servers federate — they exchange traffic with thousands of other
-servers. TeleCrypt does not. Federation is fully disabled: the federation domain
-whitelist is empty (federate with nobody, inbound and outbound), the federation
-listener resource is removed, and the trusted-key-server list is explicitly empty
-so Synapse never falls back to a public default.
+servers. TeleCrypt does not. Federation is disabled, so the service does not
+exchange room traffic with other Matrix homeservers.
 
 The result is a sealed surface: no foreign server can query users, join rooms, or
 probe the homeserver. The only way in is the authenticated client API.
@@ -46,19 +46,16 @@ Synapse itself holds no passwords. Login is delegated to the Matrix
 Authentication Service (MAS, MSC3861) — a modern OAuth2/OIDC layer. Local
 registration and password login are disabled in Synapse itself.
 
-MAS is the sole identity provider: it holds credentials directly (password
-login with mandatory email verification) rather than delegating to a separate
-upstream service, keeping a single, auditable sign-in path while the
-homeserver stays out of the credential business entirely.
+MAS is the sole identity provider: it holds credentials directly rather than
+delegating to a separate upstream service, keeping a single sign-in path while
+the homeserver stays out of the credential business entirely.
 
 
 # Media and operational hardening
 
-Uploaded media is stored in external object storage (S3), not on the homeserver
-disk; Synapse keeps only a local cache. Services run as rootless containers with
-dropped Linux capabilities and no-new-privileges, behind an upstream proxy that
-terminates TLS. State and secrets live outside the container images and outside
-version control.
+Uploaded media is stored in external object storage rather than relying only on
+homeserver disk. Service configuration and secrets are kept separate from
+application images and source code.
 
 
 # Why this matters for agents and humans alike

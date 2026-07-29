@@ -1,6 +1,7 @@
 # TeleCrypt.io — landing
 
-Static landing site for **telecrypt.io**, served at `https://telecrypt.io/`.
+Static landing site for **TeleCrypt.io**, published at
+`https://www.telecrypt.io/` through GitHub Pages.
 
 > Secure transport for agents and human beings.
 
@@ -14,10 +15,10 @@ Built with [Astro](https://astro.build) on a Vim-styled theme
 | `/`               | Landing — slogan + Vim command hints                              |
 | `/about`          | The slogan, plainly                                               |
 | `/technology`     | How Matrix/Synapse works and why this deployment is secure        |
-| `/llms`           | Placeholder for an [llms.txt](https://llmstxt.org) (empty for now)|
+| `/llms`           | Agent-facing introduction and link to `llms.txt`                  |
 | `/about.txt`      | Raw plaintext of the slogan                                       |
 | `/technology.txt` | Raw plaintext of the technology page                              |
-| `/llms.txt`       | Raw [llms.txt](https://llmstxt.org) (minimal for now)             |
+| `/llms.txt`       | Raw [llms.txt](https://llmstxt.org) for agent onboarding          |
 
 The `.txt` files in `public/` are served verbatim — both as the Vim-buffer aesthetic and so agents
 can fetch machine-readable text directly.
@@ -36,16 +37,10 @@ npm run check    # astro type-check (optional)
 
 ## Deploy
 
-This repo holds **source only**; `dist/` is gitignored. On every push to `main`, CI
-(`.github/workflows/build.yml`) builds the site and force-pushes the result to the **`dist` branch**.
+This repo holds **source only**; `dist/` is gitignored. On every push to `main`, the
+GitHub Actions workflow builds the site and deploys the artifact to GitHub Pages. Configure
+the repository's Pages custom domain as `www.telecrypt.io`.
 
-The TeleCrypt.io server repo serves it:
-
-- `deploy/deploy.sh` clones/fetches this repo's `dist` branch into
-  `/home/ubuntu/persistent_data/landing`.
-- The shared Caddy mounts that directory and `file_server`s it from the apex catch-all
-  (everything not claimed by the Matrix/MAS routes).
-
-**One-time provisioning on the VM:** add a read-only deploy key for this repo (same pattern as the
-server repo) so `deploy.sh` can fetch the private `dist` branch. See the server repo's
-`deploy/SETUP.md`.
+The apex domain, `telecrypt.io`, is intentionally separate: it provides Matrix discovery and
+redirects browser traffic to `www.telecrypt.io`. Matrix client, authentication, and control-plane
+APIs are served at `https://backend.telecrypt.io`; Matrix IDs remain `@user:telecrypt.io`.

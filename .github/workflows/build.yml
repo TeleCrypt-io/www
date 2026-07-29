@@ -1,45 +1,46 @@
-name: build-and-publish
+name: deploy-pages
 
-# Build the Astro static site and publish the result to the `dist` branch.
-# GitHub Pages serves `dist` at https://www.telecrypt.io/ (custom domain set in repo Pages settings).
-# `main` stays source-only (dist/ is gitignored); the built artifact lives wholly on `dist`.
-
+# GitHub Pages serves the built artifact at https://www.telecrypt.io/.
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
-  group: build-dist
+  group: pages
   cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7.0.1
 
-      - uses: pnpm/action-setup@v4
-
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6.4.0
         with:
           node-version: 22
           cache: pnpm
 
+      - uses: actions/configure-pages@v6.0.0
+      - run: corepack enable
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
 
-      - name: Publish dist/ to the dist branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          cd dist
-          git init -q
-          git config user.name  "telecrypt-ci"
-          git config user.email "ci@telecrypt.io"
-          git add -A
-          git commit -q -m "build ${GITHUB_SHA} ($(date -u +%FT%TZ))"
-          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:dist
+      - uses: actions/upload-pages-artifact@v5.0.0
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5.0.0

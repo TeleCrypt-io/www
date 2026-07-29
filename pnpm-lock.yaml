@@ -4,10 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  sharp: ^0.35.3
-  postcss: ^8.5.15
-
 importers:
 
   .:
@@ -19,7 +15,7 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(@astrojs/markdown-satteri@0.3.2)(astro@7.0.4(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.6.2)(jiti@2.7.0)(rollup@4.60.3)(terser@5.46.1)(yaml@2.8.4))
       '@astrojs/partytown':
-        specifier: ^2.1.7
+        specifier: 2.1.7
         version: 2.1.7
       '@astrojs/rss':
         specifier: 4.0.19
@@ -28,131 +24,131 @@ importers:
         specifier: 3.7.3
         version: 3.7.3
       '@fontsource-variable/inter':
-        specifier: ^5.2.8
+        specifier: 5.2.8
         version: 5.2.8
       '@fontsource-variable/jetbrains-mono':
-        specifier: ^5.2.8
+        specifier: 5.2.8
         version: 5.2.8
       '@fontsource-variable/newsreader':
-        specifier: ^5.2.10
+        specifier: 5.2.10
         version: 5.2.10
       '@playform/compress':
-        specifier: ^0.2.3
+        specifier: 0.2.3
         version: 0.2.3(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.6.2)(jiti@2.7.0)(rollup@4.60.3)(yaml@2.8.4)
       astro:
         specifier: 7.0.4
         version: 7.0.4(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.6.2)(jiti@2.7.0)(rollup@4.60.3)(terser@5.46.1)(yaml@2.8.4)
       astro-expressive-code:
-        specifier: ^0.44.0
+        specifier: 0.44.0
         version: 0.44.0(astro@7.0.4(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.6.2)(jiti@2.7.0)(rollup@4.60.3)(terser@5.46.1)(yaml@2.8.4))
       astro-icon:
-        specifier: ^1.1.5
+        specifier: 1.1.5
         version: 1.1.5
       astro-robots-txt:
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       astro-seo-schema:
-        specifier: ^7.0.0
+        specifier: 7.0.0
         version: 7.0.0(astro@7.0.4(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@25.6.2)(jiti@2.7.0)(rollup@4.60.3)(terser@5.46.1)(yaml@2.8.4))(schema-dts@1.1.5)
       astro-webmanifest:
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0(@types/node@25.6.2)
       hastscript:
-        specifier: ^9.0.1
+        specifier: 9.0.1
         version: 9.0.1
       katex:
-        specifier: ^0.16.45
+        specifier: 0.16.45
         version: 0.16.45
       mdast-util-directive:
-        specifier: ^3.1.0
+        specifier: 3.1.0
         version: 3.1.0
       mdast-util-to-markdown:
-        specifier: ^2.1.2
+        specifier: 2.1.2
         version: 2.1.2
       mdast-util-to-string:
-        specifier: ^4.0.0
+        specifier: 4.0.0
         version: 4.0.0
       rehype-external-links:
-        specifier: ^3.0.0
+        specifier: 3.0.0
         version: 3.0.0
       rehype-katex:
-        specifier: ^7.0.1
+        specifier: 7.0.1
         version: 7.0.1
       remark-directive:
-        specifier: ^4.0.0
+        specifier: 4.0.0
         version: 4.0.0
       remark-math:
-        specifier: ^6.0.0
+        specifier: 6.0.0
         version: 6.0.0
       satori:
         specifier: 0.26.0
         version: 0.26.0
       satori-html:
-        specifier: ^0.3.2
+        specifier: 0.3.2
         version: 0.3.2
       schema-dts:
-        specifier: ^1.1.5
+        specifier: 1.1.5
         version: 1.1.5
       sharp:
-        specifier: ^0.35.3
+        specifier: 0.35.3
         version: 0.35.3(@types/node@25.6.2)
       unified:
-        specifier: ^11.0.5
+        specifier: 11.0.5
         version: 11.0.5
       unist-util-visit:
-        specifier: ^5.1.0
+        specifier: 5.1.0
         version: 5.1.0
     devDependencies:
       '@astrojs/check':
-        specifier: ^0.9.9
+        specifier: 0.9.9
         version: 0.9.9(prettier-plugin-astro@0.14.1)(prettier@3.9.4)(typescript@6.0.3)
       '@biomejs/biome':
-        specifier: ^2.5.2
+        specifier: 2.5.2
         version: 2.5.2
       '@iconify-json/mdi':
-        specifier: ^1.2.3
+        specifier: 1.2.3
         version: 1.2.3
       '@resvg/resvg-js':
-        specifier: ^2.6.2
+        specifier: 2.6.2
         version: 2.6.2
       '@tailwindcss/vite':
         specifier: 4.3.2
         version: 4.3.2(vite@8.1.2(@types/node@25.6.2)(esbuild@0.28.1)(jiti@2.7.0)(terser@5.46.1)(yaml@2.8.4))
       '@types/hast':
-        specifier: ^3.0.4
+        specifier: 3.0.4
         version: 3.0.4
       '@types/mdast':
-        specifier: ^4.0.4
+        specifier: 4.0.4
         version: 4.0.4
       autoprefixer:
-        specifier: ^10.5.2
+        specifier: 10.5.2
         version: 10.5.2(postcss@8.5.16)
       cssnano:
-        specifier: ^8.0.2
+        specifier: 8.0.2
         version: 8.0.2(postcss@8.5.16)
       pagefind:
-        specifier: ^1.5.2
+        specifier: 1.5.2
         version: 1.5.2
       prettier:
-        specifier: ^3.9.4
+        specifier: 3.9.4
         version: 3.9.4
       prettier-plugin-astro:
         specifier: 0.14.1
         version: 0.14.1
       prettier-plugin-tailwindcss:
-        specifier: ^0.8.0
+        specifier: 0.8.0
         version: 0.8.0(prettier-plugin-astro@0.14.1)(prettier@3.9.4)
       reading-time:
-        specifier: ^1.5.0
+        specifier: 1.5.0
         version: 1.5.0
       rehype-unwrap-images:
-        specifier: ^1.0.0
+        specifier: 1.0.0
         version: 1.0.0
       tailwindcss:
-        specifier: ^4.3.2
+        specifier: 4.3.2
         version: 4.3.2
       typescript:
-        specifier: ^6.0.3
+        specifier: 6.0.3
         version: 6.0.3
 
 packages:
