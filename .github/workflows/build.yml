@@ -1,10 +1,9 @@
-name: deploy-pages
+name: Deploy www site to GitHub Pages
 
-# GitHub Pages serves the built artifact at https://www.telecrypt.io/.
+# GitHub Pages serves the immutable release artifact at https://www.telecrypt.io/.
 on:
   push:
-    branches: [main]
-  workflow_dispatch:
+    tags: ["www-v*"]
 
 permissions:
   contents: read
@@ -12,8 +11,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: true
+  group: pages-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   build:

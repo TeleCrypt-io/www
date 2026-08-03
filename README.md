@@ -29,16 +29,17 @@ Navigation is Vim-style: press `:` then a command (`:about`, `:technology`, `:ll
 ## Develop
 
 ```sh
-npm install
-npm run dev      # http://localhost:4321
-npm run build    # -> dist/
-npm run check    # astro type-check (optional)
+pnpm install
+pnpm run dev      # http://localhost:4321
+pnpm run build    # -> dist/
+pnpm run check    # astro type-check (optional)
 ```
 
 ## Deploy
 
-This repo holds **source only**; `dist/` is gitignored. On every push to `main`, the
-GitHub Actions workflow builds the site and deploys the artifact to GitHub Pages. Configure
+This repo holds **source only**; `dist/` is gitignored. Pushes and pull requests to `main` only
+verify the source. GitHub Pages builds and deploys only when an immutable `www-v*` release tag is
+pushed, so every deployment identifies its exact source release rather than a branch. Configure
 the repository's Pages custom domain as `www.telecrypt.io`.
 
 The apex domain, `telecrypt.io`, is intentionally separate: it provides Matrix discovery and
