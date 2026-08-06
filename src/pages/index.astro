@@ -2,22 +2,25 @@
 import PageLayout from "@/layouts/Base.astro";
 import { withBase } from "@/utils/path";
 
+const planUrl = "https://backend.telecrypt.io/plan";
+
 const meta = {
 	title: "TeleCrypt.io",
 	description:
-		"Secure messaging for agents and human beings. End-to-end encrypted Matrix transport — one HTTP call for an agent identity, no signup form in the loop.",
+		"Intelligent privacy. Human or artificial. Text, media, and files — end-to-end encrypted.",
 };
-
-const planUrl = "https://backend.telecrypt.io/plan";
 ---
 
-<PageLayout meta={meta} wide>
+<PageLayout meta={meta}>
 	<section class="hero">
 		<div class="copy">
-			<p class="tagline">Secure messaging for agents and human beings.</p>
+			<p class="tagline">Intelligent privacy. Human or artificial.</p>
+			<p class="lede">Text. Media. Files.</p>
 
 			<div class="cta">
-				<a class="cta-primary" href={withBase("/technology/")}>How it works</a>
+				<a class="cta-plain" href={withBase("/technology/")}>/technology</a>
+				<a class="cta-plain" href={withBase("/llms.txt")}>AI: llms.txt</a>
+				<a class="cta-primary" href={planUrl}>Humans: get it.</a>
 			</div>
 		</div>
 
@@ -65,33 +68,31 @@ const planUrl = "https://backend.telecrypt.io/plan";
 		</div>
 	</section>
 
-	<section class="pricing" id="pricing" aria-labelledby="pricing-label">
-		<div class="section-label" id="pricing-label">Let's go</div>
-		<div class="plans">
-			<article class="plan">
-				<div class="plan-head">
-					<h2 class="plan-name">Agents</h2>
-				</div>
-				<p class="plan-desc">
-					Entrance is API-based: provision an agent identity over HTTP.
-					Machine-readable docs at <a href={withBase("/llms.txt")}>llms.txt</a>.
-				</p>
-				<a class="plan-link" href={withBase("/llms.txt")}>llms.txt</a>
-			</article>
-			<article class="plan">
-				<div class="plan-head">
-					<h2 class="plan-name">Early bird</h2>
-					<p class="plan-price">5&nbsp;EUR</p>
-				</div>
-				<p class="plan-includes">Include:</p>
-				<ul class="plan-list">
-					<li>Chats</li>
-					<li>Calls</li>
-					<li>Storage</li>
-				</ul>
-				<a class="plan-link" href={planUrl}>Let's go</a>
-			</article>
-		</div>
+	<section class="tldr" aria-labelledby="tldr-title">
+		<h2 class="tldr-title" id="tldr-title">TL;DR</h2>
+		<ul class="tldr-list">
+			<li>
+				<a href={withBase("/price/")}>Flat 5&nbsp;EUR per agent/person</a>
+			</li>
+			<li>
+				Truly E2EE (end-to-end)
+				<a href="https://matrix.org/docs/matrix-concepts/end-to-end-encryption/" rel="noopener">
+					encryption
+				</a>
+			</li>
+			<li>
+				<a href="https://github.com/orgs/TeleCrypt-io/repositories" rel="noopener">Open code</a>
+			</li>
+			<li>
+				Right (and tools) to <a href={withBase("/eject/")}>eject</a>
+			</li>
+			<li>
+				In
+				<a href="https://www.perplexity.ai/search/who-is-using-matrix-synapse-an-NmXT6aSlQPGsY0xQ1Td39A" rel="noopener">
+					good company
+				</a>: NATO, the UN, the Bundeswehr, the UK Ministry of Defence, and more.
+			</li>
+		</ul>
 	</section>
 </PageLayout>
 
@@ -102,8 +103,10 @@ const planUrl = "https://backend.telecrypt.io/plan";
 		align-items: center;
 		column-gap: clamp(40px, 7vw, 96px);
 		min-height: 0;
-		padding: 8px 0 28px;
+		padding: 8px 0 40px;
 		width: 100%;
+		max-width: 1100px;
+		margin: 0 auto;
 	}
 	.copy {
 		text-align: left;
@@ -111,12 +114,22 @@ const planUrl = "https://backend.telecrypt.io/plan";
 		justify-self: start;
 	}
 	.tagline {
-		font-family: var(--font-serif);
-		font-size: clamp(20px, 2.4vw, 24px);
-		line-height: 1.35;
+		font-family: var(--font-sans);
+		font-size: clamp(28px, 4vw, 40px);
+		font-weight: 700;
+		letter-spacing: -0.035em;
+		line-height: 1.1;
 		color: hsl(var(--theme-text));
-		margin: 0 0 18px;
-		max-width: 18ch;
+		margin: 0 0 12px;
+		max-width: 20ch;
+	}
+	.lede {
+		font-family: var(--font-sans);
+		font-size: 15.5px;
+		line-height: 1.5;
+		color: hsl(var(--theme-text) / 0.78);
+		margin: 0 0 22px;
+		max-width: 32ch;
 	}
 	.cta {
 		display: flex;
@@ -124,23 +137,41 @@ const planUrl = "https://backend.telecrypt.io/plan";
 		align-items: center;
 		gap: 12px;
 	}
-	.cta-primary {
+	.cta-primary,
+	.cta-plain {
 		display: inline-flex;
 		align-items: center;
 		font-family: var(--font-sans);
 		font-size: 14.5px;
 		font-weight: 600;
 		letter-spacing: -0.01em;
-		color: hsl(var(--theme-bg));
-		background: hsl(var(--theme-accent));
 		padding: 10px 20px;
 		border-radius: 3px;
-		transition: background-color 0.2s ease, transform 0.18s ease;
+		transition: background-color 0.2s ease, color 0.2s ease, text-decoration-color 0.2s ease,
+			transform 0.18s ease;
+	}
+	.cta-primary {
+		color: hsl(var(--theme-bg));
+		background: hsl(var(--theme-accent));
 	}
 	.cta-primary:hover {
-		background: hsl(30deg 49% 66%);
+		background: hsl(14deg 100% 72%);
 	}
-	.cta-primary:active {
+	.cta-plain {
+		color: hsl(var(--theme-text) / 0.88);
+		background: transparent;
+		padding-left: 2px;
+		padding-right: 2px;
+		text-decoration: underline;
+		text-decoration-color: hsl(var(--theme-text) / 0.35);
+		text-underline-offset: 4px;
+	}
+	.cta-plain:hover {
+		color: hsl(var(--theme-text));
+		text-decoration-color: hsl(var(--theme-text) / 0.7);
+	}
+	.cta-primary:active,
+	.cta-plain:active {
 		transform: scale(0.98);
 	}
 
@@ -230,7 +261,7 @@ const planUrl = "https://backend.telecrypt.io/plan";
 	}
 	.msg--sam .who {
 		align-self: flex-start;
-		color: hsl(42deg 28% 72%);
+		color: hsl(var(--theme-text) / 0.65);
 	}
 	.msg--sam p,
 	.msg--sam .voice {
@@ -289,130 +320,78 @@ const planUrl = "https://backend.telecrypt.io/plan";
 		font-variant-numeric: tabular-nums;
 	}
 
-	.plan-includes {
-		font-family: var(--font-sans);
-		font-size: 14px;
-		font-weight: 600;
-		color: hsl(var(--theme-text) / 0.75);
-		margin: 0 0 6px;
-	}
-	.plan-list {
-		list-style: none;
-		padding: 0;
-		margin: 0 0 16px;
-		font-family: var(--font-sans);
-		font-size: 16px;
-		line-height: 1.55;
-		color: hsl(var(--theme-text) / 0.92);
-	}
-	.plan-list li {
-		margin: 0;
-	}
-	.plan-list li::before {
-		content: "· ";
-		color: hsl(var(--theme-accent));
-		font-weight: 700;
-	}
-
-	.pricing {
-		padding: 24px 0 12px;
-		border-top: 1px solid var(--hairline);
-		scroll-margin-top: 24px;
-		text-align: center;
-	}
-	.pricing .section-label {
-		margin-bottom: 28px;
-	}
-	.plans {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: clamp(24px, 5vw, 48px);
-		max-width: 720px;
-		margin: 0 auto;
-		justify-items: center;
-	}
-	.plan {
-		padding: 0;
+	.tldr {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		max-width: 32ch;
+		text-align: center;
+		max-width: 1100px;
+		margin: 0 auto;
+		padding: 28px 0 40px;
+		border-top: 1px solid var(--hairline);
+		width: 100%;
 	}
-	.plan-head {
-		display: flex;
-		align-items: baseline;
-		justify-content: center;
-		gap: 14px;
-		margin: 0 0 12px;
-		flex-wrap: wrap;
-	}
-	.plan-name {
+	.tldr-title {
 		font-family: var(--font-sans);
 		font-size: clamp(22px, 2.8vw, 28px);
 		font-weight: 700;
 		letter-spacing: -0.03em;
-		text-transform: none;
 		color: hsl(var(--theme-text));
-		margin: 0;
+		margin: 0 0 18px;
 	}
-	.plan-price {
-		font-family: var(--font-sans);
-		font-size: clamp(22px, 2.8vw, 28px);
-		font-weight: 700;
-		letter-spacing: -0.03em;
-		font-variant-numeric: tabular-nums;
-		color: hsl(var(--theme-accent));
+	.tldr-list {
+		list-style: none;
+		padding: 0;
 		margin: 0;
-	}
-	.plan-desc {
+		max-width: 48ch;
 		font-family: var(--font-sans);
 		font-size: 15.5px;
 		line-height: 1.55;
 		color: hsl(var(--theme-text) / 0.88);
-		margin: 0 0 16px;
+		text-align: left;
 	}
-	.plan-desc a {
+	.tldr-list li {
+		position: relative;
+		padding-left: 1.1em;
+		margin: 0 0 8px;
+	}
+	.tldr-list li:last-child {
+		margin-bottom: 0;
+	}
+	.tldr-list li::before {
+		content: "·";
+		position: absolute;
+		left: 0;
+		color: hsl(var(--theme-accent));
+		font-weight: 700;
+	}
+	.tldr-list a {
 		color: hsl(var(--theme-text));
 		text-decoration: underline;
 		text-decoration-color: hsl(var(--theme-text) / 0.35);
 		text-underline-offset: 3px;
 	}
-	.plan-desc a:hover {
+	.tldr-list a:hover {
 		color: hsl(var(--theme-accent));
 		text-decoration-color: hsl(var(--theme-accent));
-	}
-	.plan-link {
-		display: inline-flex;
-		font-family: var(--font-sans);
-		font-size: 14px;
-		font-weight: 600;
-		color: hsl(var(--theme-bg));
-		background: hsl(var(--theme-accent));
-		padding: 10px 18px;
-		border-radius: 3px;
-		transition: background-color 0.2s ease;
-	}
-	.plan-link:hover {
-		background: hsl(30deg 49% 66%);
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
 		.copy,
 		.product,
-		.pricing {
+		.tldr {
 			animation: intro-fade-up 420ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
 		}
 		.copy { animation-delay: 40ms; }
 		.product { animation-delay: 140ms; }
-		.pricing { animation-delay: 220ms; }
+		.tldr { animation-delay: 220ms; }
 	}
 
 	@media (max-width: 900px) {
 		.hero {
 			grid-template-columns: 1fr;
-			gap: 24px;
-			min-height: auto;
-			padding: 4px 0 24px;
+			gap: 20px;
+			padding: 4px 0 36px;
 		}
 		.copy {
 			max-width: none;
@@ -421,15 +400,14 @@ const planUrl = "https://backend.telecrypt.io/plan";
 			justify-self: stretch;
 			max-width: 520px;
 		}
-		.plans {
-			grid-template-columns: 1fr;
-			gap: 28px;
-		}
 	}
 
 	@media (max-width: 720px) {
 		.tagline {
-			max-width: 22ch;
+			max-width: 20ch;
+		}
+		.lede {
+			max-width: 36ch;
 		}
 		.msg p {
 			font-size: 13px;

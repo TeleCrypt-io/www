@@ -1,12 +1,10 @@
 ---
-import { menuLinks, siteConfig } from "@/site-config";
+import { menuLinks } from "@/site-config";
 import { withBase } from "@/utils/path";
 
 const url = new URL(Astro.request.url);
 const homePath = withBase("/");
 const isHome = url.pathname === homePath || url.pathname === withBase("");
-
-const visibleMenuLinks = menuLinks.filter((link) => link.path !== "/");
 
 const isActive = (path: string) => {
 	if (path.includes("#")) return false;
@@ -16,23 +14,39 @@ const isActive = (path: string) => {
 };
 ---
 
-<header class:list={["site-header", { "site-header--home": isHome }]} id="main-header">
+<header class="site-header" id="main-header">
 	{
 		isHome ? (
 			<h1 class="brand">
 				<a href={homePath} class="brand-link">
-					TeleCrypt<span class="tld">.io</span>
+					<img
+						class="brand-mark"
+						src={withBase("/logo-mark.png")}
+						alt=""
+						width="40"
+						height="40"
+						decoding="async"
+					/>
+					<span class="brand-text">TeleCrypt<span class="tld">.io</span></span>
 				</a>
 			</h1>
 		) : (
-			<a href={homePath} class="wordmark">
-				{siteConfig.title}
+			<a href={homePath} class="brand-link">
+				<img
+					class="brand-mark"
+					src={withBase("/logo-mark.png")}
+					alt=""
+					width="40"
+					height="40"
+					decoding="async"
+				/>
+				<span class="brand-text">TeleCrypt<span class="tld">.io</span></span>
 			</a>
 		)
 	}
 	<nav class="nav" aria-label="Primary">
 		{
-			visibleMenuLinks.map((link) => (
+			menuLinks.map((link) => (
 				<a
 					aria-current={isActive(link.path) ? "page" : false}
 					class:list={[{ active: isActive(link.path) }]}
@@ -49,25 +63,10 @@ const isActive = (path: string) => {
 <style>
 	.site-header {
 		display: flex;
-		align-items: baseline;
+		align-items: center;
 		justify-content: space-between;
 		gap: 24px;
 		margin-bottom: 28px;
-	}
-	.site-header--home {
-		align-items: center;
-		margin-bottom: 20px;
-	}
-	.wordmark {
-		font-family: var(--font-serif);
-		font-size: 17px;
-		font-weight: 500;
-		letter-spacing: -0.01em;
-		color: hsl(var(--theme-text));
-		transition: color 0.2s ease;
-	}
-	.wordmark:hover {
-		color: hsl(var(--theme-accent));
 	}
 	.brand {
 		margin: 0;
@@ -75,8 +74,11 @@ const isActive = (path: string) => {
 		font-weight: inherit;
 	}
 	.brand-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 12px;
 		font-family: var(--font-sans);
-		font-size: clamp(32px, 4.5vw, 44px);
+		font-size: clamp(28px, 4vw, 40px);
 		line-height: 1.02;
 		letter-spacing: -0.045em;
 		font-weight: 700;
@@ -87,6 +89,16 @@ const isActive = (path: string) => {
 	.brand-link:hover {
 		opacity: 0.85;
 	}
+	.brand-mark {
+		width: clamp(32px, 4.2vw, 40px);
+		height: clamp(32px, 4.2vw, 40px);
+		border-radius: 6px;
+		flex-shrink: 0;
+		display: block;
+	}
+	.brand-text {
+		display: inline-block;
+	}
 	.tld {
 		color: hsl(var(--theme-accent));
 	}
@@ -96,7 +108,7 @@ const isActive = (path: string) => {
 		gap: 22px;
 		font-family: var(--font-sans);
 		font-size: 13.5px;
-		color: hsl(var(--theme-text) / 0.72);
+		color: hsl(var(--theme-text) / 0.65);
 	}
 	.nav a {
 		display: inline-block;
@@ -129,11 +141,8 @@ const isActive = (path: string) => {
 			flex-wrap: wrap;
 			row-gap: 12px;
 		}
-		.site-header--home {
-			margin-bottom: 16px;
-		}
 		.brand-link {
-			font-size: clamp(28px, 8vw, 36px);
+			font-size: clamp(26px, 7vw, 34px);
 		}
 		.nav {
 			gap: 16px;
@@ -146,9 +155,6 @@ const isActive = (path: string) => {
 	}
 
 	@media (max-width: 420px) {
-		.wordmark {
-			font-size: 16px;
-		}
 		.nav {
 			gap: 14px;
 			font-size: 12.5px;

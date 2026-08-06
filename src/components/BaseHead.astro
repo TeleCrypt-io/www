@@ -24,11 +24,12 @@ const goatcounter = analytics?.goatcounterUrl;
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>{siteTitle}</title>
 
-<link href={withBase("/icon.png")} rel="icon" type="image/png"/>
+<link href={withBase("/favicon.ico")} rel="icon" sizes="any"/>
+<link href={withBase("/favicon-32x32.png")} rel="icon" type="image/png" sizes="32x32"/>
+<link href={withBase("/icon.png")} rel="icon" type="image/png" sizes="512x512"/>
 {
     import.meta.env.PROD && (
     <>
-        <link rel="icon" href={withBase("/favicon-32x32.png")} type="image/png"/>
         <link rel="sitemap" href={withBase("/sitemap-index.xml")}/>
         <link href={withBase("/icons/apple-touch-icon.png")} rel="apple-touch-icon"/>
     </>
@@ -46,7 +47,7 @@ const goatcounter = analytics?.goatcounterUrl;
 <link rel="preload" as="font" type="font/woff2" href={newsreaderLatin} crossorigin />
 
 {/* Default theme-color — dark background, the only theme now. */}
-<meta content="#131110" name="theme-color"/>
+<meta content="#101010" name="theme-color"/>
 
 <meta content={articleDate ? "article" : "website"} property="og:type"/>
 <meta content={title} property="og:title"/>
