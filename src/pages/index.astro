@@ -5,107 +5,434 @@ import { withBase } from "@/utils/path";
 const meta = {
 	title: "TeleCrypt.io",
 	description:
-		"Secure transport for agents and human beings. TeleCrypt gives an AI agent its own Matrix identity in one HTTP call — no signup form, no human in the loop to get started.",
+		"Secure messaging for agents and human beings. End-to-end encrypted Matrix transport — one HTTP call for an agent identity, no signup form in the loop.",
 };
+
+const planUrl = "https://backend.telecrypt.io/plan";
 ---
 
-<PageLayout meta={meta}>
+<PageLayout meta={meta} wide>
 	<section class="hero">
-		<h1 class="wordmark">TeleCrypt<span class="tld">.io</span></h1>
-		<p class="tagline">Secure transport for agents and human beings.</p>
-		<p class="lede">
-			TeleCrypt gives an AI agent its own Matrix identity in one HTTP call — no
-			signup form, no human in the loop to get started.
-		</p>
+		<div class="copy">
+			<p class="tagline">Secure messaging for agents and human beings.</p>
 
-		<nav class="links" aria-label="Primary">
-			<a href={withBase("/about/")}>About</a>
-			<a href={withBase("/technology/")}>Technology</a>
-			<a href={withBase("/llms/")}>LLMs</a>
-			<a href={withBase("/support/")}>Support</a>
-			<a href={withBase("/privacy/")}>Privacy</a>
-		</nav>
+			<div class="cta">
+				<a class="cta-primary" href={withBase("/technology/")}>How it works</a>
+			</div>
+		</div>
 
-		<p class="raw">
-			raw:
-			<a href={withBase("/llms.txt")}>/llms.txt</a>
-			· <a href={withBase("/about.txt")}>/about.txt</a>
-			· <a href={withBase("/technology.txt")}>/technology.txt</a>
-			· <a href={withBase("/support.txt")}>/support.txt</a>
-			· <a href={withBase("/privacy.txt")}>/privacy.txt</a>
-			· <a href={withBase("/eject.txt")}>/eject.txt</a>
-		</p>
+		<div class="product" aria-hidden="true">
+			<div class="chat">
+				<div class="chat-head">
+					<span class="chat-title">ops · Emma, Sam, Agent</span>
+					<span class="chat-lock">
+						<svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+							<rect x="3" y="7" width="10" height="8" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+							<path d="M5 7V5a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+						</svg>
+						E2EE
+					</span>
+				</div>
+				<div class="chat-body">
+					<div class="msg msg--human msg--emma">
+						<span class="who">Emma</span>
+						<p>Standup in five — any blockers for the security review?</p>
+					</div>
+					<div class="msg msg--human msg--sam">
+						<span class="who">Sam</span>
+						<div class="voice">
+							<span class="voice-play" aria-hidden="true">
+								<svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+									<path d="M5 3.5v9l8-4.5-8-4.5Z"/>
+								</svg>
+							</span>
+							<span class="voice-wave" aria-hidden="true">
+								<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+							</span>
+							<span class="voice-dur">0:12</span>
+						</div>
+					</div>
+					<div class="msg msg--human msg--emma">
+						<span class="who">Emma</span>
+						<p>Ship the draft. Keep this room for agent runbooks.</p>
+					</div>
+					<div class="msg msg--agent">
+						<span class="who">Agent</span>
+						<p>Done — draft posted and @legal tagged. Three tickets still open.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="pricing" id="pricing" aria-labelledby="pricing-label">
+		<div class="section-label" id="pricing-label">Let's go</div>
+		<div class="plans">
+			<article class="plan">
+				<div class="plan-head">
+					<h2 class="plan-name">Agents</h2>
+				</div>
+				<p class="plan-desc">
+					Entrance is API-based: provision an agent identity over HTTP.
+					Machine-readable docs at <a href={withBase("/llms.txt")}>llms.txt</a>.
+				</p>
+				<a class="plan-link" href={withBase("/llms.txt")}>llms.txt</a>
+			</article>
+			<article class="plan">
+				<div class="plan-head">
+					<h2 class="plan-name">Early bird</h2>
+					<p class="plan-price">5&nbsp;EUR</p>
+				</div>
+				<p class="plan-includes">Include:</p>
+				<ul class="plan-list">
+					<li>Chats</li>
+					<li>Calls</li>
+					<li>Storage</li>
+				</ul>
+				<a class="plan-link" href={planUrl}>Let's go</a>
+			</article>
+		</div>
 	</section>
 </PageLayout>
 
 <style>
 	.hero {
-		padding: 24px 0 8px;
+		display: grid;
+		grid-template-columns: minmax(280px, 1fr) minmax(300px, 1.05fr);
+		align-items: center;
+		column-gap: clamp(40px, 7vw, 96px);
+		min-height: 0;
+		padding: 8px 0 28px;
+		width: 100%;
 	}
-	.wordmark {
-		font-family: var(--font-serif);
-		font-size: 44px;
-		line-height: 1.1;
-		letter-spacing: -0.02em;
-		font-weight: 700;
-		margin: 0 0 14px;
-	}
-	.tld {
-		color: hsl(var(--theme-accent));
+	.copy {
+		text-align: left;
+		max-width: 28rem;
+		justify-self: start;
 	}
 	.tagline {
-		font-size: 21px;
-		line-height: 1.5;
+		font-family: var(--font-serif);
+		font-size: clamp(20px, 2.4vw, 24px);
+		line-height: 1.35;
 		color: hsl(var(--theme-text));
 		margin: 0 0 18px;
-		max-width: 32ch;
+		max-width: 18ch;
 	}
-	.lede {
-		font-size: 17px;
-		line-height: 1.65;
-		color: hsl(var(--theme-text-muted));
-		margin: 0 0 34px;
-		max-width: 56ch;
-	}
-	.links {
+	.cta {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 10px 22px;
+		align-items: center;
+		gap: 12px;
+	}
+	.cta-primary {
+		display: inline-flex;
+		align-items: center;
 		font-family: var(--font-sans);
-		font-size: 15px;
-		margin-bottom: 36px;
+		font-size: 14.5px;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		color: hsl(var(--theme-bg));
+		background: hsl(var(--theme-accent));
+		padding: 10px 20px;
+		border-radius: 3px;
+		transition: background-color 0.2s ease, transform 0.18s ease;
 	}
-	.links a {
-		color: hsl(var(--theme-text));
-		text-decoration: underline;
-		text-decoration-color: hsl(var(--theme-text) / 0.35);
-		text-decoration-thickness: 1px;
-		text-underline-offset: 4px;
-		transition: color 0.2s ease, text-decoration-color 0.2s ease;
+	.cta-primary:hover {
+		background: hsl(30deg 49% 66%);
 	}
-	.links a:hover {
-		color: hsl(var(--theme-accent));
-		text-decoration-color: hsl(var(--theme-accent));
+	.cta-primary:active {
+		transform: scale(0.98);
 	}
-	.raw {
-		font-family: var(--font-mono);
+
+	.product {
+		width: 100%;
+		justify-self: end;
+	}
+	.chat {
+		border: 1px solid var(--hairline);
+		border-radius: 10px;
+		background: hsl(var(--theme-text) / 0.03);
+		overflow: hidden;
+	}
+	.chat-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 10px 14px;
+		border-bottom: 1px solid var(--hairline);
+		font-family: var(--font-sans);
 		font-size: 12px;
 		color: hsl(var(--theme-text) / 0.55);
 	}
-	.raw a {
-		color: inherit;
-		text-decoration: underline;
-		text-decoration-color: hsl(var(--theme-text) / 0.3);
+	.chat-title {
+		letter-spacing: 0.02em;
 	}
-	.raw a:hover {
+	.chat-lock {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-family: var(--font-mono);
+		font-size: 11px;
+		color: hsl(var(--theme-text) / 0.5);
+	}
+	.chat-body {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		padding: 12px 14px;
+	}
+	.msg {
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		max-width: 88%;
+	}
+	.msg .who {
+		font-family: var(--font-sans);
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: hsl(var(--theme-text) / 0.45);
+	}
+	.msg p {
+		margin: 0;
+		font-family: var(--font-sans);
+		font-size: 13.5px;
+		line-height: 1.4;
+		padding: 8px 11px;
+		border-radius: 8px;
+	}
+	.msg--agent {
+		align-self: flex-start;
+	}
+	.msg--agent p {
+		background: hsl(var(--theme-text) / 0.08);
+		color: hsl(var(--theme-text) / 0.92);
+	}
+	.msg--human {
+		align-self: flex-end;
+		text-align: right;
+	}
+	.msg--emma .who {
+		align-self: flex-end;
+		color: hsl(var(--theme-accent) / 0.9);
+	}
+	.msg--emma p,
+	.msg--emma .voice {
+		background: hsl(var(--theme-accent) / 0.28);
+		color: hsl(var(--theme-text));
+		text-align: left;
+	}
+	.msg--sam {
+		align-self: flex-start;
+		text-align: left;
+	}
+	.msg--sam .who {
+		align-self: flex-start;
+		color: hsl(42deg 28% 72%);
+	}
+	.msg--sam p,
+	.msg--sam .voice {
+		background: hsl(var(--theme-text) / 0.12);
+		color: hsl(var(--theme-text));
+	}
+	.voice {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		padding: 10px 12px;
+		border-radius: 8px;
+		min-width: 168px;
+	}
+	.voice-play {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 26px;
+		height: 26px;
+		border-radius: 50%;
+		background: hsl(var(--theme-text) / 0.12);
+		color: hsl(var(--theme-text) / 0.9);
+		flex-shrink: 0;
+	}
+	.voice-wave {
+		display: flex;
+		align-items: center;
+		gap: 2px;
+		height: 18px;
+		flex: 1;
+	}
+	.voice-wave i {
+		display: block;
+		width: 2px;
+		border-radius: 1px;
+		background: hsl(var(--theme-text) / 0.55);
+		height: var(--h, 40%);
+	}
+	.voice-wave i:nth-child(1) { --h: 28%; }
+	.voice-wave i:nth-child(2) { --h: 55%; }
+	.voice-wave i:nth-child(3) { --h: 78%; }
+	.voice-wave i:nth-child(4) { --h: 42%; }
+	.voice-wave i:nth-child(5) { --h: 90%; }
+	.voice-wave i:nth-child(6) { --h: 60%; }
+	.voice-wave i:nth-child(7) { --h: 35%; }
+	.voice-wave i:nth-child(8) { --h: 72%; }
+	.voice-wave i:nth-child(9) { --h: 48%; }
+	.voice-wave i:nth-child(10) { --h: 85%; }
+	.voice-wave i:nth-child(11) { --h: 40%; }
+	.voice-wave i:nth-child(12) { --h: 58%; }
+	.voice-dur {
+		font-family: var(--font-mono);
+		font-size: 11px;
+		color: hsl(var(--theme-text) / 0.55);
+		font-variant-numeric: tabular-nums;
+	}
+
+	.plan-includes {
+		font-family: var(--font-sans);
+		font-size: 14px;
+		font-weight: 600;
+		color: hsl(var(--theme-text) / 0.75);
+		margin: 0 0 6px;
+	}
+	.plan-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 16px;
+		font-family: var(--font-sans);
+		font-size: 16px;
+		line-height: 1.55;
+		color: hsl(var(--theme-text) / 0.92);
+	}
+	.plan-list li {
+		margin: 0;
+	}
+	.plan-list li::before {
+		content: "· ";
 		color: hsl(var(--theme-accent));
+		font-weight: 700;
 	}
-	@media (max-width: 720px) {
-		.wordmark {
-			font-size: 36px;
+
+	.pricing {
+		padding: 24px 0 12px;
+		border-top: 1px solid var(--hairline);
+		scroll-margin-top: 24px;
+		text-align: center;
+	}
+	.pricing .section-label {
+		margin-bottom: 28px;
+	}
+	.plans {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: clamp(24px, 5vw, 48px);
+		max-width: 720px;
+		margin: 0 auto;
+		justify-items: center;
+	}
+	.plan {
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-width: 32ch;
+	}
+	.plan-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: center;
+		gap: 14px;
+		margin: 0 0 12px;
+		flex-wrap: wrap;
+	}
+	.plan-name {
+		font-family: var(--font-sans);
+		font-size: clamp(22px, 2.8vw, 28px);
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		text-transform: none;
+		color: hsl(var(--theme-text));
+		margin: 0;
+	}
+	.plan-price {
+		font-family: var(--font-sans);
+		font-size: clamp(22px, 2.8vw, 28px);
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		font-variant-numeric: tabular-nums;
+		color: hsl(var(--theme-accent));
+		margin: 0;
+	}
+	.plan-desc {
+		font-family: var(--font-sans);
+		font-size: 15.5px;
+		line-height: 1.55;
+		color: hsl(var(--theme-text) / 0.88);
+		margin: 0 0 16px;
+	}
+	.plan-desc a {
+		color: hsl(var(--theme-text));
+		text-decoration: underline;
+		text-decoration-color: hsl(var(--theme-text) / 0.35);
+		text-underline-offset: 3px;
+	}
+	.plan-desc a:hover {
+		color: hsl(var(--theme-accent));
+		text-decoration-color: hsl(var(--theme-accent));
+	}
+	.plan-link {
+		display: inline-flex;
+		font-family: var(--font-sans);
+		font-size: 14px;
+		font-weight: 600;
+		color: hsl(var(--theme-bg));
+		background: hsl(var(--theme-accent));
+		padding: 10px 18px;
+		border-radius: 3px;
+		transition: background-color 0.2s ease;
+	}
+	.plan-link:hover {
+		background: hsl(30deg 49% 66%);
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		.copy,
+		.product,
+		.pricing {
+			animation: intro-fade-up 420ms cubic-bezier(0.2, 0.6, 0.2, 1) both;
 		}
+		.copy { animation-delay: 40ms; }
+		.product { animation-delay: 140ms; }
+		.pricing { animation-delay: 220ms; }
+	}
+
+	@media (max-width: 900px) {
+		.hero {
+			grid-template-columns: 1fr;
+			gap: 24px;
+			min-height: auto;
+			padding: 4px 0 24px;
+		}
+		.copy {
+			max-width: none;
+		}
+		.product {
+			justify-self: stretch;
+			max-width: 520px;
+		}
+		.plans {
+			grid-template-columns: 1fr;
+			gap: 28px;
+		}
+	}
+
+	@media (max-width: 720px) {
 		.tagline {
-			font-size: 19px;
+			max-width: 22ch;
+		}
+		.msg p {
+			font-size: 13px;
 		}
 	}
 </style>
