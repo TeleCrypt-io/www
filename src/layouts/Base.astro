@@ -8,10 +8,12 @@ import type { SiteMeta } from "@/types";
 
 interface Props {
 	meta: SiteMeta;
+	wide?: boolean;
 }
 
 const {
 	meta: { articleDate, description = siteConfig.description, ogImage, title },
+	wide = false,
 } = Astro.props;
 ---
 
@@ -21,7 +23,7 @@ const {
 	</head>
 	<body>
 		<SkipLink />
-		<div class="wrap">
+		<div class:list={["wrap", { "wrap--wide": wide }]}>
 			<Header />
 			<main id="main">
 				<slot />
@@ -72,6 +74,9 @@ const {
 				min-height: 100dvh;
 				display: flex;
 				flex-direction: column;
+			}
+			.wrap--wide {
+				max-width: min(1280px, 94vw);
 			}
 			.wrap > main { flex: 1 0 auto; }
 

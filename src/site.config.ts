@@ -34,10 +34,6 @@ export const siteConfig: SiteConfig = {
 
 export const menuLinks: { path: string; title: string }[] = [
 	{
-		path: "/",
-		title: "Home",
-	},
-	{
 		path: "/about/",
 		title: "About",
 	},
@@ -46,16 +42,12 @@ export const menuLinks: { path: string; title: string }[] = [
 		title: "Technology",
 	},
 	{
-		path: "/llms/",
-		title: "LLMs",
+		path: "/#pricing",
+		title: "Pricing",
 	},
 	{
 		path: "/support/",
 		title: "Support",
-	},
-	{
-		path: "/privacy/",
-		title: "Privacy",
 	},
 ];
 
