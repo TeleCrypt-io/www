@@ -1,11 +1,73 @@
 ---
-import Page from "@/components/Page.astro";
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+	title: "Support",
+	description: "Contact TeleCrypt support for account issues, bug reports, or anything else.",
+};
 ---
 
-<Page title="Support" label="Support">
-	<p>
-		For account issues, bug reports, or anything else — email
-		<a href="mailto:support@telecrypt.io">support@telecrypt.io</a>.
-	</p>
-	<p>Served raw at <a href="/support.txt">/support.txt</a>.</p>
-</Page>
+<PageLayout meta={meta}>
+	<section class="page">
+		<header class="page-intro">
+			<h1 class="page-title">Support</h1>
+			<p class="page-lede">
+				Account issues, bug reports, or anything else — write to us and we’ll get back to you.
+			</p>
+		</header>
+		<a class="cta" href="mailto:support@telecrypt.io">support@telecrypt.io</a>
+	</section>
+</PageLayout>
+
+<style>
+	.page {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 8px 0 48px;
+		width: 100%;
+	}
+	.page-intro {
+		width: 100%;
+		max-width: 36rem;
+		margin-bottom: 28px;
+	}
+	.page-title {
+		font-family: var(--font-sans);
+		font-size: clamp(28px, 4vw, 40px);
+		font-weight: 700;
+		letter-spacing: -0.035em;
+		line-height: 1.1;
+		color: hsl(var(--theme-text));
+		margin: 0 0 12px;
+	}
+	.page-lede {
+		font-family: var(--font-sans);
+		font-size: 15.5px;
+		line-height: 1.5;
+		color: hsl(var(--theme-text) / 0.78);
+		margin: 0 auto;
+		max-width: 36ch;
+	}
+	.cta {
+		display: inline-flex;
+		font-family: var(--font-sans);
+		font-size: 15px;
+		font-weight: 600;
+		color: hsl(var(--theme-bg));
+		background: hsl(var(--theme-accent));
+		padding: 12px 22px;
+		border-radius: 3px;
+		transition: background-color 0.2s ease;
+	}
+	.cta:hover {
+		background: hsl(14deg 100% 72%);
+	}
+
+	@media (max-width: 720px) {
+		.page {
+			padding: 4px 0 36px;
+		}
+	}
+</style>

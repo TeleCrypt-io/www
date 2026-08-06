@@ -35,36 +35,34 @@
 
 	:root {
 		color-scheme: dark;
-		/* hsl-channel format — see tailwind.config.ts color mapping */
-		--theme-bg: 20deg 9% 7%;              /* #131110 */
-		--theme-text: 42deg 35% 92%;          /* #f4f0e3 */
-		--theme-text-muted: 36deg 18% 73%;    /* #c8c1ae */
-		--theme-accent: 30deg 49% 59%;        /* #c89761 */
-		--theme-accent-2: 42deg 35% 92%;      /* same as ink */
-		--theme-link: 30deg 49% 59%;          /* same as accent */
-		--theme-quote: 30deg 49% 59%;         /* same as accent */
+		/* ZenDev-leaning: near-black, white, coral-orange */
+		--theme-bg: 0deg 0% 6%;               /* #101010 */
+		--theme-text: 0deg 0% 95%;            /* #F2F2F2 */
+		--theme-text-muted: 0deg 0% 68%;      /* #ADADAD */
+		--theme-accent: 14deg 100% 67%;       /* #FF8057 */
+		--theme-accent-2: 0deg 0% 95%;
+		--theme-link: 14deg 100% 67%;
+		--theme-quote: 14deg 100% 67%;
 
-		/* Concrete-color palette tokens (see file header for rationale) */
-		--paper: #1a1715;
-		--hairline: #2a2622;
-		--faint: #4f4a42;
-		--accent-soft: rgba(200, 151, 97, 0.12);
-		--accent-soft-strong: rgba(200, 151, 97, 0.22);
+		--paper: #161616;
+		--hairline: #2a2a2a;
+		--faint: #555555;
+		--accent-soft: rgba(255, 128, 87, 0.12);
+		--accent-soft-strong: rgba(255, 128, 87, 0.22);
 
-		/* Callout accents — hues spread for distinguishability, kept muted for the theme */
-		--aside-note: 212deg 28% 68%;       /* dusty blue */
-		--aside-tip: 96deg 30% 62%;         /* green */
-		--aside-important: 284deg 34% 74%;  /* plum */
-		--aside-caution: 42deg 72% 62%;      /* amber */
-		--aside-warning: 9deg 68% 66%;      /* red */
+		--aside-note: 0deg 0% 68%;
+		--aside-tip: 0deg 0% 68%;
+		--aside-important: 14deg 80% 70%;
+		--aside-caution: 36deg 80% 62%;
+		--aside-warning: 9deg 80% 62%;
 	}
 }
 
-/* Quiet warm falloff — keeps the charcoal palette, softens flat black. */
+/* Quiet light falloff on near-black. */
 body {
 	background-image:
-		radial-gradient(ellipse 100% 70% at 20% -15%, rgba(200, 151, 97, 0.07), transparent 55%),
-		radial-gradient(ellipse 80% 50% at 100% 100%, rgba(244, 240, 227, 0.03), transparent 45%);
+		radial-gradient(ellipse 100% 70% at 20% -15%, rgba(255, 128, 87, 0.06), transparent 55%),
+		radial-gradient(ellipse 80% 50% at 100% 100%, rgba(242, 242, 242, 0.03), transparent 45%);
 	background-attachment: fixed;
 }
 
@@ -109,7 +107,8 @@ body {
 	font-weight: 500;
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
-	color: hsl(var(--theme-text) / 0.72);
+	color: hsl(var(--theme-text) / 0.5);
+	font-weight: 600;
 	margin-bottom: 36px;
 }
 
